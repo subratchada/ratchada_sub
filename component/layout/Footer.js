@@ -58,7 +58,7 @@ export default function Footer(props) {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={{ marginLeft: 20, marginBottom: 25 }}
-                    onPress={() => props.navigation.navigate('Home1')}>
+                    onPress={() => props.navigation.navigate('Map')}>
                     <Image
                         source={require('../../assets/map1.png')}
                         style={styles.ImgSize}

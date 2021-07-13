@@ -1,8 +1,8 @@
 import React from 'react'
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
-import Footer from '../layout/Footer'
-const height = Dimensions.get('window').height;
-const ImageList=[
+import { StyleSheet, FlatList, View, Text, TouchableHighlight, Image } from 'react-native';
+import { Card } from 'react-native-paper';
+
+const availableZipItems =[
   {
     "albumId": 1,
     "id": 1,
@@ -35004,24 +35004,55 @@ const ImageList=[
     "thumbnailUrl": "https://via.placeholder.com/150/6dd9cb"
   }
 ]
-export default function ListView({ navigation }) {
-    return (
-        <View style={styles.container}>
-            <View style={styles.contents}>
-                <Text>View</Text>
-            </View>
 
-            <Footer navigation={navigation} />
-        </View>
-    )
+const ZipItem = ({ index, albumId, id, title, thumbnailUrl, url, navigate }) => (
+  <View style={styles.zipItem}>
+
+    <View style={{ marginTop: 30,marginLeft:125 }}>
+    <Text style={styles.zipalbumId}>{albumId}</Text>
+    <Text style={styles.zipid}>{id}</Text>
+    <Text style={styles.ziptitle}>{title}</Text></View>
+    <View key={index}>
+      <View style={{ marginTop: 10,}}>
+        <Card>
+          <Image source={{ uri: url }} style={{ width: 180, height: 150,marginLeft:125}} />
+        </Card></View>
+
+      <View style={{ marginTop: 10, }}>
+        <Card>
+          <Image source={{ uri: thumbnailUrl }} style={{ width: 180, height: 150,marginLeft:125 }} />
+        </Card></View>
+    </View>
+
+  </View>
+
+
+)
+
+
+const _keyExtractor = item => item.id
+
+export default class WeatherScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: (<Text>Choose a zip code</Text>),
+    }
+  }
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View>
+        <FlatList
+          data={availableZipItems}
+          keyExtractor={_keyExtractor}
+          renderItem={({ item }) => <ZipItem {...item} navigate={navigate} />}
+        />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        height: height,
-        backgroundColor:'#FFC300',
-    },
-    contents: {
-        height: '82%',
-    }
+
+
 })

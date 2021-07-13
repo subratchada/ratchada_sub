@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './component/screens/Login';
 import Home from './component/screens/Home';
 import ListView from './component/screens/ListView';
-import Home1 from './component/screens/Map';
+import Map from './component/screens/Map';
 const Stack = createStackNavigator();
 export default class App extends Component {
   render() {
@@ -19,7 +19,7 @@ export default class App extends Component {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="ListView" component={ListView} />
-        <Stack.Screen name="Home1" component={Home1} />
+        <Stack.Screen name="Map" component={Map} />
       </Stack.Navigator>
     </NavigationContainer>
     )
